@@ -9,16 +9,16 @@ public class Game {
 
     public void run() {
         do {
-            String move = askForMovement();
-            String[] split = move.split(" ");
-
+            board.print();
+            Movement move = askForMovement();
 
         } while (!isFinished());
     }
 
-    private String askForMovement() {
+    private Movement askForMovement() {
         System.out.print("Move: ");
-        return scanner.nextLine();
+        String movement = scanner.nextLine();
+        return new Movement(movement);
     }
 
     private boolean isFinished() {

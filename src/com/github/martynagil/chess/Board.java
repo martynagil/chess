@@ -39,4 +39,18 @@ public class Board {
         board[6][6] = Chessman.WHITE_PAWN;
         board[7][6] = Chessman.WHITE_PAWN;
     }
+
+    public void print() {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[y].length; x++) {
+                Chessman chessman = board[x][y];
+                if (chessman == null) {
+                    System.out.print("  ");
+                } else {
+                    System.out.print(chessman.getSymbol() + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
 }
