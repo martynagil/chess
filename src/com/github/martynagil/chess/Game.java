@@ -1,5 +1,8 @@
 package com.github.martynagil.chess;
 
+import com.github.martynagil.chess.chessmen.Chessman;
+import com.github.martynagil.chess.chessmen.Color;
+
 import java.util.Scanner;
 
 public class Game {
@@ -40,30 +43,30 @@ public class Game {
     }
 
     private boolean isMovePossible(Move move) {
-        Chessman chessman = board.getFieldValue(move.getFrom());
-        if (chessman == null) {
+        Chessman fromChessman = board.getFieldValue(move.getFrom());
+        if (fromChessman == null) {
             return false;
         }
 
-        if (whitePlaying && chessman.getColor() == Color.BLACK) {
+        if (whitePlaying && fromChessman.getColor() == Color.BLACK) {
             return false;
         }
 
-        if (!whitePlaying && chessman.getColor() == Color.WHITE) {
+        if (!whitePlaying && fromChessman.getColor() == Color.WHITE) {
             return false;
         }
 
-        chessman = board.getFieldValue(move.getTo());
-        if (whitePlaying && chessman.getColor() == Color.WHITE) {
+        Chessman toChessman = board.getFieldValue(move.getTo());
+        if (whitePlaying && toChessman.getColor() == Color.WHITE) {
             return false;
         }
 
-        if (!whitePlaying && chessman.getColor() == Color.BLACK) {
+        if (!whitePlaying && toChessman.getColor() == Color.BLACK) {
             return false;
         }
 
-        //TODO: check for chessman move
-        return true;
+        return fromChessman.canMakeMove(move);
+
     }
 
     private boolean isFinished() {
