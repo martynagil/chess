@@ -41,7 +41,9 @@ public class Board {
     }
 
     public void print() {
+        System.out.println("  A B C D E F G H");
         for (int y = 0; y < board.length; y++) {
+            System.out.print(y + 1 + " ");
             for (int x = 0; x < board[y].length; x++) {
                 Chessman chessman = board[x][y];
                 if (chessman == null) {
@@ -52,5 +54,19 @@ public class Board {
             }
             System.out.println();
         }
+    }
+
+    public void move(Move move) {
+        Chessman chessman = getFieldValue(move.getFrom());
+        setFieldValue(move.getTo(), chessman);
+        setFieldValue(move.getFrom(), null);
+    }
+
+    public Chessman getFieldValue(Field field) {
+        return board[field.getX()][field.getY()];
+    }
+
+    private void setFieldValue(Field field, Chessman chessman) {
+        board[field.getX()][field.getY()] = chessman;
     }
 }

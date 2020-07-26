@@ -1,15 +1,15 @@
 package com.github.martynagil.chess;
 
-public class Movement {
+public class Move {
 
     private Field from;
     private Field to;
 
-    public Movement(String movement) {
-        movement = movement.trim();
-        String[] parts = movement.split(" ");
+    public Move(String move) {
+        move = move.trim();
+        String[] parts = move.split(" ");
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Movement must be in format [field][ ][field]");
+            throw new IllegalArgumentException("Move must be in format [field][ ][field]");
         }
 
         this.from = new Field(parts[0]);
