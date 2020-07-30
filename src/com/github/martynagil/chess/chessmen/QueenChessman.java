@@ -1,6 +1,6 @@
 package com.github.martynagil.chess.chessmen;
 
-import com.github.martynagil.chess.Field;
+import com.github.martynagil.chess.Board;
 import com.github.martynagil.chess.Move;
 
 public class QueenChessman extends Chessman {
@@ -10,7 +10,7 @@ public class QueenChessman extends Chessman {
     }
 
     @Override
-    public boolean canMakeMove(Move move) {
-        return true;
+    public boolean canMakeMove(Board board, Move move) {
+        return move.isVertical() || move.isDiagonal() || move.isHorizontal();
     }
 }

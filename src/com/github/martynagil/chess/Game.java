@@ -65,7 +65,7 @@ public class Game {
             return false;
         }
 
-        return fromChessman.canMakeMove(move);
+        return fromChessman.canMakeMove(board, move);
 
     }
 

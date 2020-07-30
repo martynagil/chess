@@ -1,6 +1,6 @@
 package com.github.martynagil.chess.chessmen;
 
-import com.github.martynagil.chess.Field;
+import com.github.martynagil.chess.Board;
 import com.github.martynagil.chess.Move;
 
 public abstract class Chessman {
@@ -18,7 +18,7 @@ public abstract class Chessman {
         }
     }
 
-    public abstract boolean canMakeMove(Move move);
+    public abstract boolean canMakeMove(Board board, Move move);
 
     public Color getColor() {
         return color;

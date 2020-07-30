@@ -1,5 +1,6 @@
 package com.github.martynagil.chess.chessmen;
 
+import com.github.martynagil.chess.Board;
 import com.github.martynagil.chess.Move;
 
 public class RookChessman extends Chessman {
@@ -9,12 +10,7 @@ public class RookChessman extends Chessman {
     }
 
     @Override
-    public boolean canMakeMove(Move move) {
-        int fromX = move.getFrom().getX();
-        int fromY = move.getFrom().getY();
-        int toX = move.getTo().getX();
-        int toY = move.getTo().getY();
-
-        return fromX == toX || fromY == toY;
+    public boolean canMakeMove(Board board, Move move) {
+        return move.isVertical() || move.isHorizontal();
     }
 }
