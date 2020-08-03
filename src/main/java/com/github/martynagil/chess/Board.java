@@ -2,44 +2,16 @@ package com.github.martynagil.chess;
 
 import com.github.martynagil.chess.chessmen.*;
 
+import java.util.List;
+
 public class Board {
 
     private Chessman[][] board = new Chessman[8][8];
 
-    public Board() {
-        board[0][0] = new RookChessman(Color.BLACK);
-        board[1][0] = new KnightChessman(Color.BLACK);
-        board[2][0] = new BishopChessman(Color.BLACK);
-        board[3][0] = new QueenChessman(Color.BLACK);
-        board[4][0] = new KingChessman(Color.BLACK);
-        board[5][0] = new BishopChessman(Color.BLACK);
-        board[6][0] = new KnightChessman(Color.BLACK);
-        board[7][0] = new RookChessman(Color.BLACK);
-        board[0][1] = new PawnChessman(Color.BLACK);
-        board[1][1] = new PawnChessman(Color.BLACK);
-        board[2][1] = new PawnChessman(Color.BLACK);
-        board[3][1] = new PawnChessman(Color.BLACK);
-        board[4][1] = new PawnChessman(Color.BLACK);
-        board[5][1] = new PawnChessman(Color.BLACK);
-        board[6][1] = new PawnChessman(Color.BLACK);
-        board[7][1] = new PawnChessman(Color.BLACK);
-
-        board[0][7] = new RookChessman(Color.WHITE);
-        board[1][7] = new KnightChessman(Color.WHITE);
-        board[2][7] = new BishopChessman(Color.WHITE);
-        board[3][7] = new QueenChessman(Color.WHITE);
-        board[4][7] = new KingChessman(Color.WHITE);
-        board[5][7] = new BishopChessman(Color.WHITE);
-        board[6][7] = new KnightChessman(Color.WHITE);
-        board[7][7] = new RookChessman(Color.WHITE);
-        board[0][6] = new PawnChessman(Color.WHITE);
-        board[1][6] = new PawnChessman(Color.WHITE);
-        board[2][6] = new PawnChessman(Color.WHITE);
-        board[3][6] = new PawnChessman(Color.WHITE);
-        board[4][6] = new PawnChessman(Color.WHITE);
-        board[5][6] = new PawnChessman(Color.WHITE);
-        board[6][6] = new PawnChessman(Color.WHITE);
-        board[7][6] = new PawnChessman(Color.WHITE);
+    public Board(List<Chessman> chessmen) {
+        chessmen.forEach(chessman -> {
+            board[chessman.getPosition().getX()][chessman.getPosition().getY()] = chessman;
+        });
     }
 
     public void print() {
@@ -62,6 +34,7 @@ public class Board {
         Chessman chessman = getFieldValue(move.getFrom());
         setFieldValue(move.getTo(), chessman);
         setFieldValue(move.getFrom(), null);
+        chessman.setPosition(move.getTo());
     }
 
     public Chessman getFieldValue(Field field) {

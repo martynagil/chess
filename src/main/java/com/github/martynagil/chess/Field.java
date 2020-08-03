@@ -31,6 +31,11 @@ public class Field {
         this.y = NUMBERS.indexOf(number);
     }
 
+    public Field(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public int getX() {
         return x;
     }

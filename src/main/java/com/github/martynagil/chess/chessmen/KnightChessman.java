@@ -1,12 +1,13 @@
 package com.github.martynagil.chess.chessmen;
 
 import com.github.martynagil.chess.Board;
+import com.github.martynagil.chess.Field;
 import com.github.martynagil.chess.Move;
 
 public class KnightChessman extends Chessman {
 
-    public KnightChessman(Color color) {
-        super(color, "H");
+    public KnightChessman(Color color, Field position) {
+        super(color, "H", position);
     }
 
     @Override
