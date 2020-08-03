@@ -46,3 +46,5 @@ public class Move {
         return to;
     }
 }
+
+// TODO: 03.08.2020 testy MOVE - wszystkie metody, konstruktor, kompromis, zakładam, ze field działa
