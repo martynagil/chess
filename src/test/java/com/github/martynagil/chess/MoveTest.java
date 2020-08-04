@@ -71,6 +71,20 @@ public class MoveTest {
     }
 
     @Test
+    void shouldCalculateVerticalDistance() {
+        Move move = new Move("C3 C6");
+
+        assertThat(move.getDistance()).isEqualTo(3);
+    }
+
+    @Test
+    void shouldCalculateDiagonalDistance() {
+        Move move = new Move("C3 F6");
+
+        assertThat(move.getDistance()).isEqualTo(3);
+    }
+
+    @Test
     void shouldThrowExceptionWhenDistanceIsWrong() {
         assertThrows(
                 IllegalStateException.class,
@@ -78,5 +92,3 @@ public class MoveTest {
         );
     }
 }
-
-// TODO: 03.08.2020 testy distance vertical i diagonal

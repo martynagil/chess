@@ -26,6 +26,16 @@ public class Game {
 
             changePlayer();
         } while (!isFinished());
+
+        printWinner();
+    }
+
+    private void printWinner() {
+        if (whitePlaying) {
+            System.out.println("The winner is BLACK");
+        } else {
+            System.out.println("The winner is WHITE");
+        }
     }
 
     private void changePlayer() {
@@ -112,6 +122,8 @@ public class Game {
     }
 
     private boolean isFinished() {
-       return false;
+       return !chessmen.stream()
+                .filter(chessman -> chessman instanceof KingChessman)
+                .allMatch(c -> c.isAlive());
     }
 }
