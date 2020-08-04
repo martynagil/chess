@@ -1,4 +1,4 @@
-package com.github.martynagil.chess;
+package com.github.martynagil.chess.engine;
 
 import com.github.martynagil.chess.chessmen.*;
 

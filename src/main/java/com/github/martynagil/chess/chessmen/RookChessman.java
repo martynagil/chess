@@ -1,8 +1,8 @@
 package com.github.martynagil.chess.chessmen;
 
-import com.github.martynagil.chess.Board;
-import com.github.martynagil.chess.Field;
-import com.github.martynagil.chess.Move;
+import com.github.martynagil.chess.engine.Board;
+import com.github.martynagil.chess.engine.Field;
+import com.github.martynagil.chess.engine.Move;
 
 public class RookChessman extends Chessman {
 

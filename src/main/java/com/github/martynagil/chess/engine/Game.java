@@ -1,4 +1,4 @@
-package com.github.martynagil.chess;
+package com.github.martynagil.chess.engine;
 
 import com.github.martynagil.chess.chessmen.*;
 
@@ -21,13 +21,21 @@ public class Game {
     public void run() {
         do {
             board.print();
-            Move move = askForMove();
-            board.move(move);
+            Action action = askForAction();
+            if (action.isMove()) {
+                board.move(action.getMove());
+            } else {
+                saveGame();
+            }
 
             changePlayer();
         } while (!isFinished());
 
         printWinner();
+    }
+
+    private void saveGame() {
+        // TODO: 04.08.2020
     }
 
     private void printWinner() {
@@ -42,14 +50,18 @@ public class Game {
         whitePlaying = !whitePlaying;
     }
 
-    private Move askForMove() {
+    private Action askForAction() {
         while (true) {
             try {
-                System.out.print("Move: ");
-                Move move = new Move(scanner.nextLine());
+                System.out.print("Action: ");
+                String action = scanner.nextLine().trim();
+                if (action.equalsIgnoreCase("save")) {
+                    return Action.save();
+                }
 
+                Move move = new Move(action);
                 if (isMovePossible(move)) {
-                    return move;
+                    return Action.move(move);
                 } else {
                     System.out.println("This move is not possible");
                 }

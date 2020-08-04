@@ -1,4 +1,4 @@
-package com.github.martynagil.chess;
+package com.github.martynagil.chess.engine;
 
 public class Move {
 

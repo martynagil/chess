@@ -1,7 +1,7 @@
 package com.github.martynagil.chess;
 
+import com.github.martynagil.chess.engine.Field;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
