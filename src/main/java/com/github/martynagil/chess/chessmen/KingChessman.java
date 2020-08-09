@@ -14,4 +14,9 @@ public class KingChessman extends Chessman {
     public boolean canMakeMove(Board board, Move move) {
         return move.getDistance() == 1;
     }
+
+    @Override
+    public ChessmanType getType() {
+        return ChessmanType.KING;
+    }
 }

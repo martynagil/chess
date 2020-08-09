@@ -14,4 +14,9 @@ public class RookChessman extends Chessman {
     public boolean canMakeMove(Board board, Move move) {
         return move.isVertical() || move.isHorizontal();
     }
+
+    @Override
+    public ChessmanType getType() {
+        return ChessmanType.ROOK;
+    }
 }

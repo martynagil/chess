@@ -21,4 +21,10 @@ public class PawnChessman extends Chessman {
         }
 
     }
+
+    @Override
+    public ChessmanType getType() {
+        return ChessmanType.PAWN;
+    }
+
 }

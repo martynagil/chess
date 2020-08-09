@@ -24,6 +24,8 @@ public abstract class Chessman {
 
     public abstract boolean canMakeMove(Board board, Move move);
 
+    public abstract ChessmanType getType();
+
     public boolean isAlive(){
         return position != null;
     }

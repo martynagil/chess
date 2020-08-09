@@ -14,4 +14,9 @@ public class BishopChessman extends Chessman {
     public boolean canMakeMove(Board board, Move move) {
        return move.isDiagonal();
     }
+
+    @Override
+    public ChessmanType getType() {
+        return ChessmanType.BISHOP;
+    }
 }

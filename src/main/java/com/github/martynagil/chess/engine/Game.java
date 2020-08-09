@@ -1,6 +1,7 @@
 package com.github.martynagil.chess.engine;
 
 import com.github.martynagil.chess.chessmen.*;
+import com.github.martynagil.chess.save.GameSaver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +9,13 @@ import java.util.Scanner;
 
 public class Game {
 
-    private List<Chessman> chessmen = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
+    private GameSaver gameSaver = new GameSaver();
+
+    private List<Chessman> chessmen = new ArrayList<>();
     private boolean whitePlaying = true;
     private Board board;
+    private boolean gameLasting = true;
 
     public Game() {
         assignPlaces();
@@ -26,6 +30,7 @@ public class Game {
                 board.move(action.getMove());
             } else {
                 saveGame();
+                gameLasting = false;
             }
 
             changePlayer();
@@ -35,7 +40,7 @@ public class Game {
     }
 
     private void saveGame() {
-        // TODO: 04.08.2020
+        gameSaver.save(whitePlaying, chessmen);
     }
 
     private void printWinner() {
@@ -66,6 +71,7 @@ public class Game {
                     System.out.println("This move is not possible");
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println(e.getMessage());
             }
         }
@@ -86,6 +92,7 @@ public class Game {
         }
 
         Chessman toChessman = board.getFieldValue(move.getTo());
+        // TODO: 09.08.2020  
         if (whitePlaying && toChessman.getColor() == Color.WHITE) {
             return false;
         }
@@ -134,8 +141,8 @@ public class Game {
     }
 
     private boolean isFinished() {
-       return !chessmen.stream()
-                .filter(chessman -> chessman instanceof KingChessman)
-                .allMatch(c -> c.isAlive());
+       return !gameLasting || !chessmen.stream()
+                .filter(chessman -> chessman.getType() == ChessmanType.KING)
+                .allMatch(Chessman::isAlive);
     }
 }

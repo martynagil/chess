@@ -28,4 +28,9 @@ public class KnightChessman extends Chessman {
         }
         return toX == fromX + 2 && toY == fromY + 1 || toX == fromX - 2 && toY == fromY + 1;
     }
+
+    @Override
+    public ChessmanType getType() {
+        return ChessmanType.KNIGHT;
+    }
 }
