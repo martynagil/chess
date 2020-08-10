@@ -92,7 +92,11 @@ public class Game {
         }
 
         Chessman toChessman = board.getFieldValue(move.getTo());
-        // TODO: 09.08.2020  
+
+        if (toChessman == null){
+            return fromChessman.canMakeMove(board, move);
+        }
+
         if (whitePlaying && toChessman.getColor() == Color.WHITE) {
             return false;
         }

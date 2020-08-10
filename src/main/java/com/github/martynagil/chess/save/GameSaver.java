@@ -21,7 +21,7 @@ public class GameSaver {
                 whitePlaying,
                 chessmen.stream()
                         .map(chessman -> new ChessmanState(
-                                chessman.getColor(), chessman.getPosition(), chessman.getType()
+                                chessman.getColor(), chessman.toString(), chessman.getType()
                         ))
                         .collect(toList())
         );
