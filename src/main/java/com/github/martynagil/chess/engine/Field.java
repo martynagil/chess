@@ -12,7 +12,6 @@ public class Field {
 
     private int x;
     private int y;
-    private String fieldString;
 
     public Field(String field) {
         field = field.trim();
@@ -27,7 +26,6 @@ public class Field {
             throw new IllegalArgumentException("Field must be in format [letter][number]");
         }
 
-        fieldString = field;
         this.x = LETTERS.indexOf(letter);
         this.y = NUMBERS.indexOf(number);
     }
@@ -38,7 +36,7 @@ public class Field {
     }
 
     public String asString() {
-        return fieldString;
+        return LETTERS.get(x) + NUMBERS.get(y);
     }
 
     public int getX() {

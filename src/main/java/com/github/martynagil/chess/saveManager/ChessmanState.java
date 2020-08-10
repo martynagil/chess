@@ -1,8 +1,12 @@
-package com.github.martynagil.chess.save;
+package com.github.martynagil.chess.saveManager;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.martynagil.chess.chessmen.ChessmanType;
 import com.github.martynagil.chess.chessmen.Color;
-import com.github.martynagil.chess.engine.Field;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ChessmanState {
 
@@ -10,7 +14,11 @@ public class ChessmanState {
     private String field;
     private ChessmanType type;
 
-    public ChessmanState(Color color, String field, ChessmanType type) {
+    @JsonCreator
+    public ChessmanState(
+            @JsonProperty("color") Color color,
+            @JsonProperty("field") String field,
+            @JsonProperty("type") ChessmanType type) {
         this.color = color;
         this.field = field;
         this.type = type;

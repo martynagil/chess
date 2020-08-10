@@ -1,28 +1,38 @@
 package com.github.martynagil.chess.engine;
 
 import com.github.martynagil.chess.chessmen.*;
-import com.github.martynagil.chess.save.GameSaver;
+import com.github.martynagil.chess.saveManager.ChessmanState;
+import com.github.martynagil.chess.saveManager.ChessmanStateMapper;
+import com.github.martynagil.chess.saveManager.GameManager;
+import com.github.martynagil.chess.saveManager.GameState;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.*;
 
 public class Game {
 
     private Scanner scanner = new Scanner(System.in);
-    private GameSaver gameSaver = new GameSaver();
+    private GameManager gameManager = new GameManager();
 
     private List<Chessman> chessmen = new ArrayList<>();
     private boolean whitePlaying = true;
     private Board board;
     private boolean gameLasting = true;
 
-    public Game() {
-        assignPlaces();
-        this.board = new Board(chessmen);
-    }
-
     public void run() {
+        if (!tryToLoadGame()) {
+            assignPlaces();
+            gameManager.deleteSaveIfExists();
+        }
+        board = new Board(chessmen);
+
         do {
             board.print();
             Action action = askForAction();
@@ -32,7 +42,6 @@ public class Game {
                 saveGame();
                 gameLasting = false;
             }
-
             changePlayer();
         } while (!isFinished());
 
@@ -40,7 +49,7 @@ public class Game {
     }
 
     private void saveGame() {
-        gameSaver.save(whitePlaying, chessmen);
+        gameManager.save(whitePlaying, chessmen);
     }
 
     private void printWinner() {
@@ -148,5 +157,25 @@ public class Game {
        return !gameLasting || !chessmen.stream()
                 .filter(chessman -> chessman.getType() == ChessmanType.KING)
                 .allMatch(Chessman::isAlive);
+    }
+
+    private boolean tryToLoadGame() {
+        if (gameManager.saveExist()) {
+            if (askForLoad()) {
+                ChessmanStateMapper chessmanStateMapper = new ChessmanStateMapper();
+                GameState gameState = gameManager.loadGame();
+                chessmen = gameState.getChessmen().stream()
+                        .map(chessmanStateMapper::mapToChessman)
+                        .collect(toList());
+                whitePlaying = gameState.isWhitePlaying();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean askForLoad() {
+        System.out.println("Do you want to load the save?");
+        return scanner.nextLine().equals("yes");
     }
 }

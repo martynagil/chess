@@ -1,4 +1,7 @@
-package com.github.martynagil.chess.save;
+package com.github.martynagil.chess.saveManager;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
@@ -7,7 +10,10 @@ public class GameState {
     private boolean whitePlaying;
     private List<ChessmanState> chessmen;
 
-    public GameState(boolean whitePlaying, List<ChessmanState> chessmen) {
+    @JsonCreator
+    public GameState(
+            @JsonProperty("whitePlaying") boolean whitePlaying,
+            @JsonProperty("chessmen") List<ChessmanState> chessmen) {
         this.whitePlaying = whitePlaying;
         this.chessmen = chessmen;
     }
