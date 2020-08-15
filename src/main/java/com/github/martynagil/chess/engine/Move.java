@@ -16,6 +16,12 @@ public class Move {
         this.to = new Field(parts[1]);
     }
 
+    public Move(Field fieldFrom, Field fieldTo) {
+
+        from = fieldFrom;
+        to = fieldTo;
+    }
+
     public boolean isVertical() {
         return to.getY() != from.getY() && to.getX() == from.getX();
     }
