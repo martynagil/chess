@@ -59,8 +59,8 @@ public class MoveTest {
     void shouldIdentifyMoveAsHorizontal() {
         Move move = new Move("A1 B1");
 
-        assertThat(move.isDiagonal()).isTrue();
-        assertThat(move.isHorizontal()).isFalse();
+        assertThat(move.isDiagonal()).isFalse();
+        assertThat(move.isHorizontal()).isTrue();
         assertThat(move.isVertical()).isFalse();
     }
 

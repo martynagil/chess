@@ -1,6 +1,6 @@
 package com.github.martynagil.chess.engine;
 
-import com.github.martynagil.chess.chessmen.*;
+import com.github.martynagil.chess.chessmen.Chessman;
 
 import java.util.List;
 
@@ -9,9 +9,11 @@ public class Board {
     private Chessman[][] board = new Chessman[8][8];
 
     public Board(List<Chessman> chessmen) {
-        chessmen.forEach(chessman -> {
-            board[chessman.getPosition().getX()][chessman.getPosition().getY()] = chessman;
-        });
+        chessmen.stream()
+                .filter(chessman -> chessman.getPosition() != null)
+                .forEach(chessman -> {
+                    board[chessman.getPosition().getX()][chessman.getPosition().getY()] = chessman;
+                });
     }
 
     public void print() {

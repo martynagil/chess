@@ -3,6 +3,7 @@ package com.github.martynagil.chess.saveManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.martynagil.chess.chessmen.Chessman;
 import com.github.martynagil.chess.engine.Game;
+import com.github.martynagil.chess.engine.Part;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,10 +22,10 @@ public class GameManager {
 
     Scanner scanner = new Scanner(System.in);
 
-    public void save(boolean whitePlaying, List<Chessman> chessmen) {
+    public void save(Part part) {
         GameState gameState = new GameState(
-                whitePlaying,
-                chessmen.stream()
+                part.isWhitePlaying(),
+                part.getChessmen().stream()
                         .map(chessman -> new ChessmanState(
                                 chessman.getColor(), chessman.getPosition().asString(), chessman.getType()
                         ))
